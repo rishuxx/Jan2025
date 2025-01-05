@@ -146,7 +146,7 @@ export const Basic = [
   {
     id: 1,
     name: 'AC Repair',
-    Des: 'Reapir & Servicing',
+    Des: 'Reapir',
     price: '₹499',
     image: require('../assets/category/Basic1.png'),
   },
