@@ -1,9 +1,10 @@
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React, {FC} from 'react';
 import {screenWidth} from '@utils/Scaling';
 import Carousel from 'react-native-reanimated-carousel';
 import {useSharedValue} from 'react-native-reanimated';
 import ScalePress from '@components/ui/ScalePress';
+import {navigate} from '@utils/NavigationUtils';
 
 const AdCarousal: FC<{adData: any}> = ({adData}) => {
   const progressValue = useSharedValue(0);
@@ -11,6 +12,11 @@ const AdCarousal: FC<{adData: any}> = ({adData}) => {
     vertical: false,
     width: screenWidth,
     height: parseFloat((screenWidth * 0.7).toFixed(5)),
+  };
+
+  const handlePress = () => {
+    console.log('Pressed'); // Add this to debug
+    navigate('ServenticaOriginals');
   };
 
   return (
@@ -27,9 +33,12 @@ const AdCarousal: FC<{adData: any}> = ({adData}) => {
         modeConfig={{parallaxScrollingOffset: 0, parallaxScrollingScale: 0.94}}
         renderItem={({item}: any) => {
           return (
-            <ScalePress style={styles.imageContainer}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={handlePress}
+              style={styles.imageContainer}>
               <Image source={item} style={styles.img} />
-            </ScalePress>
+            </TouchableOpacity>
           );
         }}
       />
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     height: '90%',
-    padding:15,
+    padding: 15,
   },
   img: {
     width: '100%',
@@ -52,4 +61,3 @@ const styles = StyleSheet.create({
 });
 
 export default AdCarousal;
-////
