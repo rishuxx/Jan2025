@@ -8,6 +8,7 @@ import {Fonts} from '@utils/Constants';
 interface CategoryItem {
   image: any;
   name: string;
+  navigationTarget: string; // Added this to specify where each card should navigate
 }
 
 interface CategoryContainerProps {
@@ -21,7 +22,7 @@ const CategoryContainer: FC<CategoryContainerProps> = ({data}) => {
         {items.map((item, index) => (
           <ScalePress
             key={index}
-            onPress={() => navigate('ProductCategories')}
+            onPress={() => navigate(item.navigationTarget)}
             style={styles.item}>
             <View style={styles.imageWrapper}>
               <Image source={item.image} style={styles.image} />

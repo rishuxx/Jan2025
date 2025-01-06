@@ -128,17 +128,20 @@ export const categories = [
     id: 1,
     name: 'Services',
     image: require('../assets/category/1a.png'),
+    navigationTarget: 'ServicesPage',
     products: productsList,
   },
   {
     id: 2,
     name: 'Repairs',
     image: require('../assets/category/2a.png'),
+    navigationTarget: 'RepairsPage',
   },
   {
     id: 3,
     name: 'OnDemand',
     image: require('../assets/category/3a.png'),
+    navigationTarget: 'OnDemandPage',
   },
 ];
 
