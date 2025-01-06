@@ -12,7 +12,6 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import LogoImage from '@assets/images/TopLogo.png';
 import {useAuthStore} from '@state/authStore';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import HeroText from './HeroText';
 
 const Header: FC<{showNotice: () => void}> = ({showNotice}) => {
   const {setUser, user} = useAuthStore();
@@ -31,6 +30,12 @@ const Header: FC<{showNotice: () => void}> = ({showNotice}) => {
       {/* Address Section */}
       <View style={styles.addressSection}>
         <View style={styles.addressRow}>
+          <Icon
+            name="map-marker"
+            color="#fff"
+            size={RFValue(25)}
+            style={{paddingRight:5}}
+          />
           <CustomText
             variant="h6"
             numberOfLines={1}
@@ -48,7 +53,6 @@ const Header: FC<{showNotice: () => void}> = ({showNotice}) => {
       </View>
 
       {/* Message Section */}
-   <HeroText/>
     </View>
   );
 };
@@ -69,7 +73,9 @@ const styles = StyleSheet.create({
   },
   // Address Section
   addressSection: {
-    marginBottom: 15,
+    marginTop:10,
+    marginBottom: 5,
+    paddingRight:100,
   },
   addressRow: {
     flexDirection: 'row',

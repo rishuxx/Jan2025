@@ -1,9 +1,7 @@
 import {
-  Platform,
   Animated as RNAnimated,
   SafeAreaView,
   StyleSheet,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {FC, useEffect, useRef} from 'react';
@@ -13,7 +11,6 @@ import {
   CollapsibleContainer,
   CollapsibleHeaderContainer,
   CollapsibleScrollView,
-  useCollapsibleContext,
   withCollapsibleContext,
 } from '@r0b0t3d/react-native-collapsible';
 import Visuals from './Visuals';
@@ -23,30 +20,13 @@ import Content from '@components/dashboard/Content.tsx';
 import CustomText from '@components/ui/CustomText.tsx';
 import {RFValue} from 'react-native-responsive-fontsize';
 import {Fonts} from '@utils/Constants.tsx';
-import Animated, {useAnimatedStyle, withTiming} from 'react-native-reanimated';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import BackToTopButton from '@components/ui/BackToTopButton.tsx';
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12);
 const HEADER_HEIGHT = screenHeight * 0.4;
 
 const ProductDashboard: FC = () => {
-  const {scrollY, expand} = useCollapsibleContext();
-  const previousScroll = useRef<number>(0);
-
-  const backToTopStyle = useAnimatedStyle(() => {
-    const isScrollingUp =
-      scrollY.value < previousScroll.current && scrollY.value > 180;
-    const opacity = withTiming(isScrollingUp ? 1 : 0, {duration: 300});
-    const translateY = withTiming(isScrollingUp ? 0 : 10, {duration: 300});
-
-    previousScroll.current = scrollY.value;
-
-    return {
-      opacity,
-      transform: [{translateY}],
-    };
-  });
-
   const noticePosition = useRef(new RNAnimated.Value(NOTICE_HEIGHT)).current;
 
   const slideUp = () => {
@@ -73,36 +53,37 @@ const ProductDashboard: FC = () => {
     return () => clearTimeout(timeoutId);
   });
 
+  const customText = (
+    <CustomText
+      fontFamily={Fonts.CoolR}
+      numberOfLines={3}
+      variant="h1"
+      style={{color: '#fff',}}>
+      Sit back and relax, we'll take care of the rest!
+    </CustomText>
+  );
+
+
+  
+
   return (
+    // Rain Notification
     <NoticeAnimation noticePosition={noticePosition}>
       <View style={styles.container}>
         <SafeAreaView />
 
-        <Animated.View style={[styles.backToTopButton, backToTopStyle]}>
-          <TouchableOpacity
-            onPress={() => {
-              scrollY.value = 0;
-              expand();
-            }}
-            style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
-            <MaterialCommunityIcons
-              name="arrow-up-circle-outline"
-              color="white"
-              size={RFValue(18)}
-            />
-            <CustomText
-              variant="h7"
-              style={{color: 'white'}}
-              fontFamily={Fonts.CoolR}>
-              Back To Top
-            </CustomText>
-          </TouchableOpacity>
-        </Animated.View>
+        {/* BACK TO TAP  */}
+        <BackToTopButton />
 
         <CollapsibleContainer>
+          {/* Header:- Yellow Container,SearchBox, adress etc */}
           <CollapsibleHeaderContainer containerStyle={styles.headerContainer}>
             <View style={styles.visualsContainer}>
-              <Visuals />
+              <Visuals
+                backgroundImage={require('@assets/images/lights.jpg')}
+                lottieSource={require('@assets/animations/raining.json')}
+                customTextComponent={customText}
+              />
               <View style={styles.headerContent}>
                 <AnimatedHeader
                   showNotice={() => {
@@ -117,6 +98,7 @@ const ProductDashboard: FC = () => {
             </View>
           </CollapsibleHeaderContainer>
 
+          {/* Other Contnet on page */}
           <CollapsibleScrollView
             nestedScrollEnabled
             style={styles.scrollView}
@@ -128,13 +110,14 @@ const ProductDashboard: FC = () => {
                   fontSize={RFValue(28)}
                   fontFamily={Fonts.CoolR}
                   style={styles.footerTitle}>
-                  Now Available in Prayagraj
+                  Coming Soon in Prayagraj
                 </CustomText>
                 <CustomText
-                  fontSize={RFValue(12)}
+                  fontSize={RFValue(8)}
                   fontFamily={Fonts.CoolR}
-                  style={styles.footerSubtitle}>
-                  Coming Soon in your City
+                  style={styles.footerSubtitle}
+                  numberOfLines={2}>
+                  Covering Some Major Pincodes of Prayagraj in Phase 1
                 </CustomText>
               </View>
             </View>
@@ -184,21 +167,9 @@ const styles = StyleSheet.create({
   },
   footerSubtitle: {
     marginTop: 18,
-    paddingBottom: 100,
+    paddingBottom: 120,
     opacity: 0.2,
-  },
-  backToTopButton: {
-    position: 'absolute',
-    alignSelf: 'center',
-    top: Platform.OS === 'ios' ? screenHeight * 0.18 : 100,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    backgroundColor: 'black',
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    zIndex: 999,
+    paddingRight:40,
   },
 });
 

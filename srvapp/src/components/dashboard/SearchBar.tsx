@@ -68,7 +68,7 @@ const SearchBar: FC = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
-    marginTop: 30,
+    marginTop: 20,
     marginHorizontal: 16,
     borderRadius: 15,
     shadowColor: '#000',

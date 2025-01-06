@@ -22,8 +22,8 @@ const StickSearchBar: FC = () => {
   });
 
   return (
-    <StickyView style={[backgroundColorChanges]}>
-      <SearchBar/>
+    <StickyView style={[backgroundColorChanges]} >
+      <SearchBar />
       <Animated.View style={[styles.shadow, animatedShadow]} />
     </StickyView>
   );
