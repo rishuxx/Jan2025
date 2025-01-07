@@ -145,6 +145,34 @@ export const categories = [
   },
 ];
 
+export const ServicesIcons = [
+  {
+    id: 1,
+    name: 'Painting',
+    image: require('../assets/IconsCategory/paint.png'),
+    // navigationTarget: 'ServicesPage',
+    products: productsList,
+  },
+  {
+    id: 2,
+    name: 'Electric',
+    image: require('../assets/IconsCategory/electric.png'),
+    // navigationTarget: 'RepairsPage',
+  },
+  {
+    id: 3,
+    name: 'Plumbing',
+    image: require('../assets/IconsCategory/plumbing.png'),
+    // navigationTarget: 'OnDemandPage',
+  },
+  {
+    id: 4,
+    name: 'Cleaning',
+    image: require('../assets/IconsCategory/cleaning.png'),
+    // navigationTarget: 'OnDemandPage',
+  },
+];
+
 export const Basic = [
   {
     id: 1,

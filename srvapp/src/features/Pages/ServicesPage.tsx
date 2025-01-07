@@ -24,6 +24,7 @@ import BackToTopButton from '@components/ui/BackToTopButton.tsx';
 import Visuals from '@features/auth/dashboard/Visuals';
 import AnimatedHeader from '@features/auth/dashboard/AnimatedHeader';
 import StickSearchBar from '@features/auth/dashboard/StickSearchBar.tsx';
+import ServicesContent from './PagesContent/ServicesContent';
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12);
 const HEADER_HEIGHT = screenHeight * 0.4;
@@ -66,7 +67,6 @@ const ServicesPage: FC = () => {
   );
 
   return (
-    // Rain Notification
 
     <View style={styles.container}>
       <SafeAreaView />
@@ -103,7 +103,7 @@ const ServicesPage: FC = () => {
           style={styles.scrollView}
           showsVerticalScrollIndicator={false}>
           <View style={styles.contentContainer}>
-            <Content />
+            <ServicesContent/>
             <View style={styles.footer}>
               <CustomText
                 fontSize={RFValue(28)}
