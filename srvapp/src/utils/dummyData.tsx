@@ -173,6 +173,40 @@ export const ServicesIcons = [
   },
 ];
 
+
+
+export const RepairsIcons = [
+  {
+    id: 1,
+    name: 'Ro',
+    image: require('../assets/IconsCategory/Repairing/ro.png'),
+    navigationTarget: 'PaintingScreen',
+    products: productsList,
+  },
+  {
+    id: 2,
+    name: 'Fan',
+    image: require('../assets/IconsCategory/Repairing/fan.png'),
+    navigationTarget: 'ElectricalScreen',
+  },
+  {
+    id: 3,
+    name: 'Ac',
+    image: require('../assets/IconsCategory/Repairing/ac.png'),
+    navigationTarget: 'PlumbingScreen',
+  },
+  {
+    id: 4,
+    name: 'WashingMachine',
+    image: require('../assets/IconsCategory/Repairing/washingMachine.png'),
+    navigationTarget: 'CleaningScreen',
+  },
+];
+
+
+
+
+
 export const Basic = [
   {
     id: 1,

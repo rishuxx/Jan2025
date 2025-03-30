@@ -25,6 +25,7 @@ import Visuals from '@features/auth/dashboard/Visuals';
 import AnimatedHeader from '@features/auth/dashboard/AnimatedHeader';
 import StickSearchBar from '@features/auth/dashboard/StickSearchBar.tsx';
 import ServicesContent from './PagesContent/ServicesContent';
+import RepairsContent from './PagesContent/RepairsContent';
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12);
 const HEADER_HEIGHT = screenHeight * 0.4;
@@ -78,7 +79,7 @@ const RepairPage: FC = () => {
         <CollapsibleHeaderContainer containerStyle={styles.headerContainer}>
           <View style={styles.visualsContainer}>
             <Visuals
-              backgroundImage={require('@assets/images/ServicesHero.jpg')}
+              backgroundImage={require('@assets/images/repairHero.jpg')}
               lottieSource={require('@assets/animations/raining.json')}
               customTextComponent={customText}
             />
@@ -102,7 +103,7 @@ const RepairPage: FC = () => {
           style={styles.scrollView}
           showsVerticalScrollIndicator={false}>
           <View style={styles.contentContainer}>
-            <ServicesContent />
+            <RepairsContent />
             <View style={styles.footer}>
               <CustomText
                 fontSize={RFValue(28)}
