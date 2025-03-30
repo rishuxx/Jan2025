@@ -16,7 +16,6 @@ const ProductCategories: FC = () => {
 
 <View style={styles.subContainer}>
 
-  
 
 
 </View>

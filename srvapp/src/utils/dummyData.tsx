@@ -150,26 +150,26 @@ export const ServicesIcons = [
     id: 1,
     name: 'Painting',
     image: require('../assets/IconsCategory/paint.png'),
-    // navigationTarget: 'ServicesPage',
+    navigationTarget: 'PaintingScreen',
     products: productsList,
   },
   {
     id: 2,
-    name: 'Electric',
+    name:'Electric',
     image: require('../assets/IconsCategory/electric.png'),
-    // navigationTarget: 'RepairsPage',
+    navigationTarget: 'ElectricalScreen',
   },
   {
     id: 3,
     name: 'Plumbing',
     image: require('../assets/IconsCategory/plumbing.png'),
-    // navigationTarget: 'OnDemandPage',
+    navigationTarget: 'PlumbingScreen',
   },
   {
     id: 4,
     name: 'Cleaning',
     image: require('../assets/IconsCategory/cleaning.png'),
-    // navigationTarget: 'OnDemandPage',
+    navigationTarget: 'CleaningScreen',
   },
 ];
 

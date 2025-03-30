@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import {View, Text, StyleSheet} from 'react-native';
+import React from 'react';
 import CustomText from '@components/ui/CustomText';
-import { Fonts } from '@utils/Constants';
+import {Fonts} from '@utils/Constants';
 
 const HeroText = () => {
   return (
@@ -26,8 +26,7 @@ const HeroText = () => {
       </View>
     </View>
   );
-}
-
+};
 
 const styles = StyleSheet.create({
   messageSection: {
@@ -44,5 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default HeroText
+export default HeroText;

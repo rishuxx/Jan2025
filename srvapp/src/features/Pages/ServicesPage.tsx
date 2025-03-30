@@ -67,7 +67,6 @@ const ServicesPage: FC = () => {
   );
 
   return (
-
     <View style={styles.container}>
       <SafeAreaView />
 
@@ -103,7 +102,7 @@ const ServicesPage: FC = () => {
           style={styles.scrollView}
           showsVerticalScrollIndicator={false}>
           <View style={styles.contentContainer}>
-            <ServicesContent/>
+            <ServicesContent />
             <View style={styles.footer}>
               <CustomText
                 fontSize={RFValue(28)}

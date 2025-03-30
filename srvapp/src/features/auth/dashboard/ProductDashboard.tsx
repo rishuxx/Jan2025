@@ -58,13 +58,10 @@ const ProductDashboard: FC = () => {
       fontFamily={Fonts.CoolR}
       numberOfLines={3}
       variant="h1"
-      style={{color: '#fff',}}>
+      style={{color: '#fff'}}>
       Sit back and relax, we'll take care of the rest!
     </CustomText>
   );
-
-
-  
 
   return (
     // Rain Notification
@@ -80,7 +77,7 @@ const ProductDashboard: FC = () => {
           <CollapsibleHeaderContainer containerStyle={styles.headerContainer}>
             <View style={styles.visualsContainer}>
               <Visuals
-                backgroundImage={require('@assets/images/lights.jpg')}
+                backgroundImage={require('@assets/images/broom1.jpg')}
                 lottieSource={require('@assets/animations/raining.json')}
                 customTextComponent={customText}
               />
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
     marginTop: 18,
     paddingBottom: 120,
     opacity: 0.2,
-    paddingRight:40,
+    paddingRight: 40,
   },
 });
 
