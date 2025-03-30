@@ -1,26 +1,10 @@
-// ServiceDetails.tsx
+// ServicesReusableDetails.tsx - with your requested changes
 import React, {FC, useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import CustomText from '@components/ui/CustomText';
 import {Fonts} from '@utils/Constants';
 
-interface TabContent {
-  price: string;
-  description: string;
-  details: string[];
-}
-
-interface ServiceDetailsProps {
-  title: string;
-  rating: string;
-  bookings: string;
-  offers: any; // Changed to accept any component or data
-  subtitle: string[];
-  tabs: string[];
-  tabContent?: {
-    [key: string]: TabContent;
-  }; // Make tabContent optional
-}
+// Keep all the existing interfaces
 
 const ServiceDetails: FC<ServiceDetailsProps> = ({
   title,
@@ -29,18 +13,19 @@ const ServiceDetails: FC<ServiceDetailsProps> = ({
   offers,
   subtitle,
   tabs,
-  tabContent = {}, // Default empty object
+  tabContent = {},
+  onViewDetails,
+  onAdd,
 }) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
-  // Default content if tab content is not provided
   const defaultContent = {
     price: '',
     description: '',
     details: [],
+    image: null,
   };
 
-  // Check if tabContent exists and has the active tab
   const activeContent =
     tabContent && tabContent[activeTab]
       ? tabContent[activeTab]
@@ -48,6 +33,7 @@ const ServiceDetails: FC<ServiceDetailsProps> = ({
 
   return (
     <View style={styles.sectionContainer}>
+      <View style={styles.divider} />
       <CustomText
         fontFamily={Fonts.CoolR}
         numberOfLines={3}
@@ -62,6 +48,9 @@ const ServiceDetails: FC<ServiceDetailsProps> = ({
 
       {/* Offers */}
       <View style={styles.offersContainer}>{offers}</View>
+
+      {/* Horizontal grey line above subtitle */}
+      <View style={styles.divider} />
 
       {/* subtitle */}
       <CustomText
@@ -79,34 +68,74 @@ const ServiceDetails: FC<ServiceDetailsProps> = ({
             key={index}
             onPress={() => setActiveTab(tab)}
             style={[styles.tab, activeTab === tab && styles.activeTab]}>
-            <Text style={styles.tabText}>{tab}</Text>
+            <CustomText
+              fontFamily={Fonts.CoolR}
+              numberOfLines={1}
+              style={styles.tabText}>
+              {tab}
+            </CustomText>
           </TouchableOpacity>
         ))}
       </View>
 
-      {/* Pricing and Details */}
-      <CustomText
-        fontFamily={Fonts.CoolR}
-        numberOfLines={3}
-        variant="h1"
-        style={styles.price}>
-        {activeContent.price}
-      </CustomText>
-      <Text style={styles.description}>{activeContent.description}</Text>
-      {activeContent.details.map((item, index) => (
-        <Text key={index} style={styles.details}>
-          • {item}
-        </Text>
-      ))}
+      {/* Content container with image and details */}
+      <View style={styles.contentContainer}>
+        {/* Left side content */}
+        <View style={styles.contentDetails}>
+          {/* Pricing and Details */}
+          <CustomText
+            fontFamily={Fonts.CoolR}
+            numberOfLines={1}
+            style={styles.price}>
+            {activeContent.price}
+          </CustomText>
+          <CustomText
+            fontFamily={Fonts.CoolR}
+            numberOfLines={3}
+            style={styles.description}>
+            {activeContent.description}
+          </CustomText>
+          <View style={styles.bulletPoints}>
+            {activeContent.details.map((item, index) => (
+              <CustomText
+                fontFamily={Fonts.CoolR}
+                key={index}
+                style={styles.details}>
+                • {item}
+              </CustomText>
+            ))}
+          </View>
 
-      {/* Buttons */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.viewDetailsButton}>
-          <Text style={styles.buttonText}>View Details</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.addButton}>
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
+          {/* Buttons moved to left side */}
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.viewDetailsButton}
+              onPress={onViewDetails}>
+              <CustomText fontFamily={Fonts.CoolR} style={styles.buttonText}>
+                View Details
+              </CustomText>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.addButton} onPress={onAdd}>
+              <CustomText fontFamily={Fonts.CoolR} style={styles.buttonText}>
+                Add
+              </CustomText>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Right side image */}
+        {activeContent.image && (
+          <View style={styles.imageContainer}>
+            <Image
+              source={activeContent.image}
+              style={styles.tabImage}
+              resizeMode="cover"
+            />
+            <CustomText fontFamily={Fonts.CoolR} style={styles.imageLabel}>
+              {activeTab}
+            </CustomText>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -122,10 +151,16 @@ const styles = StyleSheet.create({
     color: '#595956',
     letterSpacing: -1,
   },
+  divider: {
+    height: 1,
+    backgroundColor: '#E0E0E0',
+    marginBottom: 30,
+  },
   subTitle: {
     fontSize: 30,
     color: '#595956',
     letterSpacing: -0.5,
+    marginTop: 5,
   },
   bookings: {
     fontSize: 18,
@@ -147,11 +182,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   activeTab: {
-    backgroundColor: '#FFC107', // Yellow for active tab
+    backgroundColor: '#FFE175',
   },
   tabText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#595956',
+  },
+  contentContainer: {
+    flexDirection: 'row',
+    marginTop: 10,
+    // Reduce space between image and text
+    columnGap: 5,
+  },
+  contentDetails: {
+    flex: 1,
+    paddingRight: 5, // Reduced right padding
+  },
+  imageContainer: {
+    marginTop:25,
+    width: '50%',
+    alignItems: 'center',
+  },
+  tabImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 8,
+  },
+  imageLabel: {
+    marginTop: 5,
+    fontSize: 18,
+    color: '#595956',
+    textAlign: 'center',
   },
   price: {
     color: '#595956',
@@ -160,33 +221,41 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   description: {
+    paddingVertical: 5, // Reduced vertical padding
     fontSize: 16,
-    color: '#333',
+    color: '#8C8C87',
+  },
+  bulletPoints: {
+    marginBottom: 10,
   },
   details: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: 15,
+    color: '#8C8C87',
     marginVertical: 2,
   },
+
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
+    justifyContent: 'flex-start',
+    marginTop: 10,
+    gap: 10,
   },
   viewDetailsButton: {
-    backgroundColor: '#ccc',
-    padding: 10,
+    backgroundColor: '#9E9E9E',
+    padding: 8,
     borderRadius: 5,
+    width: '60%',
   },
   addButton: {
-    backgroundColor: '#FFC107',
-    padding: 10,
+    backgroundColor: '#83CFA3',
+    padding: 8,
     borderRadius: 5,
+    width: '30%',
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: 'bold',
     color: '#fff',
+    textAlign: 'center',
   },
 });
 

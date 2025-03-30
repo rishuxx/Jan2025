@@ -65,11 +65,12 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '90%', // Almost full width of the item
     height: '100%', // Almost full height
-    marginHorizontal: 5, // Small horizontal margin
+    marginHorizontal: 26, // Small horizontal margin
+  
   },
   img: {
     width: '100%',
-    height: '50%',
+    height: '60%',
     resizeMode: 'cover',
     borderRadius: 8,
   },

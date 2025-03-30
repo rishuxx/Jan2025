@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 17,
-    paddingVertical: 30,
-    marginVertical: 20,
+    paddingVertical: 20,
+    marginVertical: 5,
   },
   row: {
     flexDirection: 'row',

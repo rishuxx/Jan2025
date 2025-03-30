@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     letterSpacing: -2,
     color: '#fff',
     fontSize: 100,
-    transform: [{translateY: 28},{translateX:1}],
+    transform: [{translateY: 28},{translateX:5}],
   },
 });
 

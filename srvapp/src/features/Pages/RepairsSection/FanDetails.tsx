@@ -30,7 +30,7 @@ const FanDetails = () => {
   return (
     <View>
       <ServiceDetails
-        title="Fan Services & Reapirs"
+        title="Fan Services & Repairs"
         rating="4.82"
         bookings="32K"
         offers={<OffersCarousal adData={offerData} />}

@@ -4,6 +4,11 @@ import {View} from 'react-native';
 import ServiceDetails from './ServicesReusableDetails';
 import OffersCarousal from './OffersCarousalReusable';
 
+// Import the images at the top level
+const interiorImage = require('@assets/images/InteriorPaint.jpg');
+const exteriorImage = require('@assets/images/ExteriorPaint.jpg');
+const bothImage = require('@assets/images/BothPaint.jpg');
+
 const PaintingDetails = () => {
   const offerData = [
     require('@assets/images/offerCard1.png'),
@@ -13,26 +18,29 @@ const PaintingDetails = () => {
     require('@assets/images/offerCard3.png'),
   ];
 
-  // Define different content for each tab
+  // Use the imported image variables in your tabContent
   const tabContent = {
     Interior: {
-      price: '₹15 - ₹20 per sq. ft',
-      description: 'Transform your interior spaces with premium paints',
+      price: '₹15 - ₹20 / sq.ft',
+      description: 'Transform your indoor spaces with premium paints',
       details: ['Wall preparation', 'Primer application', '2 coats of paint'],
+      image: interiorImage, // Use the imported image
     },
     Exterior: {
-      price: '₹18 - ₹25 per sq. ft',
+      price: '₹18 - ₹25 / sq. ft',
       description: 'Weather-resistant exterior painting solutions',
       details: ['Surface cleaning', 'Crack filling', 'Waterproof coating'],
+      image: exteriorImage, // Use the imported image
     },
     Both: {
-      price: '₹15 - ₹25 per sq. ft',
+      price: '₹15 - ₹25 / sq. ft',
       description: 'Complete painting solution for your home',
       details: [
         'Interior & exterior surfaces',
         'Premium quality paints',
         'Professional finish',
       ],
+      image: bothImage, // Use the imported image
     },
   };
 
@@ -46,6 +54,8 @@ const PaintingDetails = () => {
         subtitle={['House Painting']}
         tabs={['Interior', 'Exterior', 'Both']}
         tabContent={tabContent}
+        onViewDetails={() => console.log('View Details clicked')}
+        onAdd={() => console.log('Add service clicked')}
       />
     </View>
   );
